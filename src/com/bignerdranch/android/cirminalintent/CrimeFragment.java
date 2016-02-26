@@ -26,13 +26,36 @@ public class CrimeFragment extends Fragment {
     private Crime mCrime;
     private EditText mTitleField;
     private Button mDateButton;
-    private CheckBox mSovledCheckBox;
+    private CheckBox mSolvedCheckBox;
+
+    /**
+     * 使用argument方式进行两个Activity之间的传值
+     *
+     * @param crimeId
+     * @return
+     */
+    public static CrimeFragment newInstance(UUID crimeId) {
+        // 创建一个Bundle对象，并存储crimeId
+        Bundle args = new Bundle();
+        args.putSerializable(EXTRA_CRIME_ID, crimeId);
+
+        // 创建fragment对象，并将Bundle对象放置其中
+        CrimeFragment fragment = new CrimeFragment();
+        fragment.setArguments(args);
+
+        // 返回该fragment
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // 使用简单直接的方式获取intent内容
-        UUID crimeId = (UUID) getActivity().getIntent().getSerializableExtra(EXTRA_CRIME_ID);
+//         使用简单直接的方式获取intent内容
+//        UUID crimeId = (UUID) getActivity().getIntent().getSerializableExtra(EXTRA_CRIME_ID);
+
+        // 采用argument的方式获取intent内容
+        UUID crimeId = (UUID) getArguments().getSerializable(EXTRA_CRIME_ID);
+
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
     }
 
@@ -66,9 +89,9 @@ public class CrimeFragment extends Fragment {
         mDateButton.setEnabled(false);
 
         // Solved?
-        mSovledCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
-        mSovledCheckBox.setChecked(mCrime.isSolved());
-        mSovledCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
+        mSolvedCheckBox.setChecked(mCrime.isSolved());
+        mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mCrime.setSolved(isChecked);
