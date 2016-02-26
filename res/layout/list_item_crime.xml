@@ -9,6 +9,7 @@
               android:gravity="center"
               android:padding="4dp"
               android:enabled="false"
+              android:focusable="false"
               android:text="@string/crime_solved_label"
               android:id="@+id/crime_list_item_solvedCheckBox"/>
     <TextView android:layout_width="match_parent"

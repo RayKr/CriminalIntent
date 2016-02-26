@@ -1,7 +1,6 @@
 package com.bignerdranch.android.cirminalintent;
 
 import android.app.ListFragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -13,7 +12,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.bignerdranch.android.cirminalintent.model.Crime;
 import com.bignerdranch.android.cirminalintent.model.CrimeLab;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
