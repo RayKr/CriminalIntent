@@ -37,6 +37,13 @@ public class CrimeListFragment extends ListFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        // 覆盖onResume方法，当唤醒后刷新list
+        ((CrimeAdapter) getListAdapter()).notifyDataSetChanged();
+    }
+
+    @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Crime c = ((CrimeAdapter) getListAdapter()).getItem(position);
         Log.d(TAG, c.getTitle() + " was clicked.");
